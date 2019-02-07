@@ -16,30 +16,28 @@ class Circle //<>// //<>// //<>//
   private int stroke;
   private color circleColor;
 
-  public Circle(int xPosition,int yPosition)
+  public Circle(int xPosition, int yPosition)
   {
     mass = DEFAULT_MASS;
     radius = DEFAULT_RADIUS;
     energy = DEFAULT_ENEGERY;
-    circleColor = DEFAULT_COLOR;
-    position = new PVector(xPosition,yPosition);
-    speed = new PVector(0,0);
+    circleColor = DEFAULT_COLOR;;
+    position = new PVector(xPosition, yPosition);
+    speed = new PVector(0, 0);
   }
 
-  public Circle(float xPosition,float yPosition,float xVelocity,float yVelocity )
+  public Circle(float xPosition, float yPosition, float xVelocity, float yVelocity )
   {
     mass = DEFAULT_MASS;
     radius = DEFAULT_RADIUS;
     energy = DEFAULT_ENEGERY;
     circleColor = DEFAULT_COLOR;
-      position = new PVector(xPosition,yPosition);
-    speed = new PVector(xVelocity,yVelocity);
+    position = new PVector(xPosition, yPosition);
+    speed = new PVector(xVelocity, yVelocity);
   }
 
   public void update()
   {
-    //this.moveX();
-    //this.moveY();
     this.move();
     this.collideWall();
     this.updateColor();
@@ -134,9 +132,9 @@ class Circle //<>// //<>// //<>//
     return speed.mag();
   }
 
-  public void setSpeed(float xSpeed,float ySpeed)
+  public void setSpeed(float xSpeed, float ySpeed)
   {
-    speed.set(xSpeed,ySpeed);
+    speed.set(xSpeed, ySpeed);
   }
 
   public void setXSpeed(float xSpeed)
@@ -182,15 +180,6 @@ class Circle //<>// //<>// //<>//
     position.add(speed);
   }
 
-  //private void moveX()
-  //{
-  //  position[0] += speed[0];
-  //}
-
-  //private void moveY()
-  //{
-  //  position[1] += speed[1];
-  //}
 
   public void collide(Circle otherCircle)
   {
@@ -202,9 +191,13 @@ class Circle //<>// //<>// //<>//
 
   public void collideWall()
   {
-    if (doCollideWall(this))
+    //if (doCollideWall(this))
+    //{
+    //  collideWithWall(this);
+    //}
+    if (doCollideObst(currentCircle, obstacleList.get(0)))
     {
-      collideWithWall(this);
+      collideWithWall(currentCircle);
     }
   }
 
@@ -220,17 +213,18 @@ class Circle //<>// //<>// //<>//
   }
 
   public boolean mouseTouch()
-  {
-    float distance = dist(mouseX,mouseY,position.x,position.y);
+{
+    float distance = dist(mouseX, mouseY, position.x, position.y);
 
-    return distance <= radius;
-  }
 
-  public void display()
-  {
-    ellipseMode(RADIUS);
-    fill(circleColor);
-    strokeWeight(stroke);
-    ellipse(position.x, position.y, radius, radius);
-  }
+  return distance <= radius;
+}
+
+public void display()
+{
+  ellipseMode(RADIUS);
+  fill(circleColor);
+  strokeWeight(stroke);
+  ellipse(position.x, position.y, radius, radius);
+}
 }
