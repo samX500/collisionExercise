@@ -1,4 +1,4 @@
-class Circle //<>//
+class Circle //<>// //<>// //<>//
 {
   public final int DEFAULT_MASS = 30;
   public final int DEFAULT_RADIUS = 30;
