@@ -11,35 +11,36 @@ class Circle //<>//
   private int mass;
   private int radius;
   private int energy;
-  private int[] position = new int[2];
-  private int[] speed = new int [2];
+  private PVector position;
+  private PVector speed; 
   private int stroke;
   private color circleColor;
 
-  public Circle(int[] position)
+  public Circle(int xPosition,int yPosition)
   {
     mass = DEFAULT_MASS;
     radius = DEFAULT_RADIUS;
     energy = DEFAULT_ENEGERY;
     circleColor = DEFAULT_COLOR;
-    this.position = position;
-    speed = DEFAULT_SPEED;
+    position = new PVector(xPosition,yPosition);
+    speed = new PVector(0,0);
   }
 
-  public Circle(int[] position, int[] speed)
+  public Circle(float xPosition,float yPosition,float xVelocity,float yVelocity )
   {
     mass = DEFAULT_MASS;
     radius = DEFAULT_RADIUS;
     energy = DEFAULT_ENEGERY;
     circleColor = DEFAULT_COLOR;
-    this.position = position;
-    this.speed = speed;
+      position = new PVector(xPosition,yPosition);
+    speed = new PVector(xVelocity,yVelocity);
   }
 
   public void update()
   {
-    this.moveX();
-    this.moveY();
+    //this.moveX();
+    //this.moveY();
+    this.move();
     this.collideWall();
     this.updateColor();
     this.isHovering();
@@ -91,63 +92,63 @@ class Circle //<>//
     energy = (1/2) * mass * (int)pow(getAbsoluteSpeed(), 2);
   }
 
-  public int getXPosition()
+  public float getXPosition()
   {
-    return position[0];
+    return position.x;
   }
 
-  public int getYPosition()
+  public float getYPosition()
   {
-    return position[1];
+    return position.y;
   }
 
-  public void setXPosition(int xPosition)
-  {
-    //TODO might want to validate
-    position[0] = xPosition;
-  }
-
-  public void setYPosition(int yPosition)
+  public void setXPosition(float xPosition)
   {
     //TODO might want to validate
-    position[1] = yPosition;
+    position.x = xPosition;
   }
 
-  public int[] getSpeed()
+  public void setYPosition(float yPosition)
+  {
+    //TODO might want to validate
+    position.y = yPosition;
+  }
+
+  public PVector getSpeed()
   {
     return speed;
   }
 
-  public int getXSpeed()
+  public float getXSpeed()
   {
-    return speed[0];
+    return speed.x;
   }
 
-  public int getYSpeed()
+  public float getYSpeed()
   {
-    return speed[1];
+    return speed.y;
   }
 
-  public int getAbsoluteSpeed()
+  public float getAbsoluteSpeed()
   {
-    return (int)sqrt(pow(speed[0], 2)+pow(speed[1], 2));
+    return speed.mag();
   }
 
-  public void setSpeed(int[] speed)
+  public void setSpeed(float xSpeed,float ySpeed)
   {
-    this.speed = speed;
+    speed.set(xSpeed,ySpeed);
   }
 
-  public void setXSpeed(int xSpeed)
+  public void setXSpeed(float xSpeed)
   {
     //TODO might want to validate
-    speed[0] = xSpeed;
+    speed.x = xSpeed;
   }
 
-  public void setYSpeed(int ySpeed)
+  public void setYSpeed(float ySpeed)
   {
     //TODO might want to validate
-    speed[1] = ySpeed;
+    speed.y = ySpeed;
   }
 
   public color getColor()
@@ -176,15 +177,20 @@ class Circle //<>//
     this.stroke = stroke;
   }
 
-  private void moveX()
+  private void move()
   {
-    position[0] += speed[0];
+    position.add(speed);
   }
 
-  private void moveY()
-  {
-    position[1] += speed[1];
-  }
+  //private void moveX()
+  //{
+  //  position[0] += speed[0];
+  //}
+
+  //private void moveY()
+  //{
+  //  position[1] += speed[1];
+  //}
 
   public void collide(Circle otherCircle)
   {
@@ -215,8 +221,7 @@ class Circle //<>//
 
   public boolean mouseTouch()
   {
-    int[] distanceVec =new int[]{mouseX-position[0], mouseY-position[1]};
-    int distance = (int)sqrt(pow(distanceVec[0], 2)+pow(distanceVec[1], 2));
+    float distance = dist(mouseX,mouseY,position.x,position.y);
 
     return distance <= radius;
   }
@@ -226,6 +231,6 @@ class Circle //<>//
     ellipseMode(RADIUS);
     fill(circleColor);
     strokeWeight(stroke);
-    ellipse(position[0], position[1], radius, radius);
+    ellipse(position.x, position.y, radius, radius);
   }
 }

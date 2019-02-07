@@ -2,8 +2,7 @@
 public static boolean doCollide(Circle currentCircle, Circle otherCircle)
 {
   boolean isCollision = false;
-  int[] distanceVec = new int[]{otherCircle.getXPosition()-currentCircle.position[0], otherCircle.getYPosition()-currentCircle.position[1]};
-  int distance =  (int)sqrt(pow(distanceVec[0], 2)+pow(distanceVec[1], 2));
+  float distance = dist(currentCircle.getXPosition(), currentCircle.getYPosition(), otherCircle.getXPosition(), otherCircle.getYPosition());
   if (distance <= currentCircle.radius + otherCircle.getRadius())
   {
     isCollision = true;
@@ -14,16 +13,16 @@ public static boolean doCollide(Circle currentCircle, Circle otherCircle)
 
 public static boolean doCollideWall(Circle currentCircle)
 {
-  return currentCircle.position[0]-currentCircle.radius <= 0 + menuWitdh||currentCircle.position[0]+currentCircle.radius >= xSize +menuWitdh||currentCircle.position[1]-currentCircle.radius<=0||currentCircle.position[1]+currentCircle.radius>=ySize;
+  return currentCircle.getXPosition()-currentCircle.radius <= 0 + menuWitdh||currentCircle.getXPosition()+currentCircle.radius >= xSize +menuWitdh||currentCircle.getYPosition()-currentCircle.radius<=0||currentCircle.getYPosition()+currentCircle.radius>=ySize;
 }
 
 public static void collideWith(Circle currentCircle, Circle otherCircle)
 {
-  currentCircle.setSpeed(new int[]{0, 0});
-  otherCircle.setSpeed(new int[]{0, 0});
+  currentCircle.setSpeed(0, 0);
+  otherCircle.setSpeed(0, 0);
 }
 
 public static void collideWithWall(Circle currentCircle)
 {
-  currentCircle.setSpeed(new int[]{0, 0});
+  currentCircle.setSpeed(0, 0);
 }
