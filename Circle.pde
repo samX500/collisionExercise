@@ -191,14 +191,13 @@ class Circle //<>// //<>// //<>//
 
   public void collideWall()
   {
-    //if (doCollideWall(this))
-    //{
-    //  collideWithWall(this);
-    //}
-    if (doCollideObst(currentCircle, obstacleList.get(0)))
+  for(Obstacle obst:obstacleList)
+  {
+    if (doCollideObst(currentCircle, obst))
     {
       collideWithWall(currentCircle);
     }
+  }
   }
 
   public void isHovering()

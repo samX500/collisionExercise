@@ -13,9 +13,8 @@ public static boolean doCollide(Circle currentCircle, Circle otherCircle)
 
 public static boolean doCollideObst(Circle currentCircle,Obstacle currentObst)
 {
-      System.out.println("here");
   boolean isCollision = false;
-  PVector distance = PVector.sub(currentCircle.position,currentObst.position);
+  PVector distance = PVector.sub(currentObst.position,currentCircle.position);
   float theta = distance.heading();
   float obstMinDist = currentObst.obstWitdh/cos(theta);
   float minLenght = currentCircle.radius + obstMinDist;
@@ -25,11 +24,6 @@ public static boolean doCollideObst(Circle currentCircle,Obstacle currentObst)
     isCollision = true;
   }
   return isCollision;
-}
-
-public static boolean doCollideWall(Circle currentCircle)
-{
-  return currentCircle.getXPosition()-currentCircle.radius <= 0 + menuWitdh||currentCircle.getXPosition()+currentCircle.radius >= xSize +menuWitdh||currentCircle.getYPosition()-currentCircle.radius<=0||currentCircle.getYPosition()+currentCircle.radius>=ySize;
 }
 
 public static void collideWith(Circle currentCircle, Circle otherCircle)

@@ -3,11 +3,6 @@ static ArrayList<Obstacle> obstacleList = new ArrayList<Obstacle>();
 ArrayList<PVector> oldSpeed = new ArrayList<PVector>();
 int wallSize = 50;
 
-Obstacle leftWall = new Obstacle(menuWitdh-wallSize, height/2,wallSize, height);
-Obstacle rightWall = new Obstacle(width +wallSize,height/2 , wallSize, height);
-Obstacle roof = new Obstacle(width/2, -wallSize, width, wallSize);
-Obstacle floor = new Obstacle(width/2, height+wallSize-50, width, wallSize);
-
 Circle newCircle;
 boolean stop = false;
 static final int xSize = 1000;
@@ -17,10 +12,10 @@ static final int ySize = 1000;
 void setup()
 {
   size(1200, 1000);
-  obstacleList.add(leftWall);
-  obstacleList.add(rightWall);
-  obstacleList.add(roof);
-  obstacleList.add(floor);
+  obstacleList.add(new Obstacle(menuWitdh-wallSize+10, height/2,wallSize, height));
+  obstacleList.add(new Obstacle(width +wallSize-10,height/2 , wallSize, height));
+  obstacleList.add(new Obstacle(width/2, -wallSize+10, width, wallSize));
+  obstacleList.add(new Obstacle(width/2, height+wallSize-10, width, wallSize));
 }
 
 void draw()  
@@ -58,7 +53,6 @@ void draw()
     {
 
       Circle circle = circleList.get(i);
-      //line(circle.getXPosition(),circle.getYPosition(),circle.getXPosition()+circle.getSpeed().mag(),circle.getYPosition()+circle.getSpeed().mag());
       line(circle.getXPosition(), circle.getYPosition(), circle.getXPosition()+(oldSpeed.get(i).x)*10, circle.getYPosition()+(oldSpeed.get(i).y)*10);
     }
   }
