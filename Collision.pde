@@ -19,7 +19,7 @@ public static boolean doCollideObst(Circle currentCircle,Obstacle currentObst)
   float obstMinDist = currentObst.obstWitdh/cos(theta);
   float minLenght = currentCircle.radius + obstMinDist;
   
-  if(distance.mag() < minLenght)
+  if(distance.mag() > minLenght)
   {
     isCollision = true;
   }
