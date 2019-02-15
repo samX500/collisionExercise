@@ -11,6 +11,20 @@ class Obstacle
     position = new PVector(xPosition,yPosition);
   }
   
+  
+  
+  public int getWidth()
+  {
+    return obstWitdh;
+  }
+  
+   public int getHeight()
+  {
+    return obstHeight;
+  }
+  
+  
+  
   public void display()
   {
     rectMode(RADIUS);
