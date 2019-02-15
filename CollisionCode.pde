@@ -1,3 +1,6 @@
+PImage cuteGirl1,cuteGirl2,cuteGirl3,cuteGirl4;
+ArrayList<PImage> cuteGirlList = new ArrayList<PImage>();
+
 ArrayList<Circle> circleList = new ArrayList<Circle>();
 static ArrayList<Obstacle> obstacleList = new ArrayList<Obstacle>();
 ArrayList<PVector> oldSpeed = new ArrayList<PVector>();
@@ -11,10 +14,19 @@ static final int ySize = 1000;
 
 void setup()
 {
+  cuteGirlList.add(loadImage("azusa.jpg"));
+  cuteGirlList.add(loadImage("rikka.jpg"));
+  cuteGirlList.add(loadImage("nano.jpg"));
+  cuteGirlList.add(loadImage("miho.jpg"));
+
   size(1200, 1000);
+  //Left wall
   obstacleList.add(new Obstacle(menuWitdh-wallSize+10, height/2,wallSize, height));
+  //Right wall
   obstacleList.add(new Obstacle(width +wallSize-10,height/2 , wallSize, height));
+  //Roof
   obstacleList.add(new Obstacle(width/2, -wallSize+10, width, wallSize));
+  //Floor
   obstacleList.add(new Obstacle(width/2, height+wallSize-10, width, wallSize));
 }
 
@@ -51,7 +63,6 @@ void draw()
   {
     for (int i = 0; i< circleList.size(); i++)
     {
-
       Circle circle = circleList.get(i);
       line(circle.getXPosition(), circle.getYPosition(), circle.getXPosition()+(oldSpeed.get(i).x)*10, circle.getYPosition()+(oldSpeed.get(i).y)*10);
     }
@@ -59,9 +70,9 @@ void draw()
   
   for (Circle circle : circleList)
   {
-    circle.display();
     circle.update();
   }
+
 }
 
 void mousePressed()

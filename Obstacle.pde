@@ -12,6 +12,15 @@ class Obstacle
   }
   
   
+  public float getXPosition()
+  {
+    return position.x;
+  }
+
+  public float getYPosition()
+  {
+    return position.y;
+  }
   
   public int getWidth()
   {

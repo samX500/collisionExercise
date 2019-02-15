@@ -14,16 +14,20 @@ public static boolean doCollide(Circle currentCircle, Circle otherCircle)
 public static boolean doCollideObst(Circle currentCircle,Obstacle currentObst)
 {
   boolean isCollision = false;
-  
   PVector distance = PVector.sub(currentObst.position,currentCircle.position);
- 
 
-   if(abs(distance.x) > currentCircle.getRadius()+currentObst.getWidth()||abs(distance.y) > currentCircle.getRadius()+currentObst.getHeight())
+    System.out.println(abs(distance.x) > currentCircle.getRadius()+currentObst.getWidth()||abs(distance.y) > currentCircle.getRadius()+currentObst.getHeight());
+   if(abs(distance.x) < currentCircle.getRadius()+currentObst.getWidth()||abs(distance.y) < currentCircle.getRadius()+currentObst.getHeight())
    {
+      if(distance.x <= 0 && (currentCircle.getXPosition() > currentObst.getXPosition()))
+     {
+       currentCircle.setXPosition(currentObst.getXPosition()-currentObst.getWidth());
+       isCollision = true;
+     }
      isCollision = true;
    }
   
-  
+  System.out.println(isCollision);
   return isCollision;
 }
 

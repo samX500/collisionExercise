@@ -1,4 +1,4 @@
-class Circle //<>// //<>// //<>//
+class Circle //<>//
 {
   public final int DEFAULT_MASS = 30;
   public final int DEFAULT_RADIUS = 30;
@@ -15,6 +15,7 @@ class Circle //<>// //<>// //<>//
   private PVector speed; 
   private int stroke;
   private color circleColor;
+  private int cuteGirl = (int)random(0,cuteGirlList.size()); 
 
   public Circle(int xPosition, int yPosition)
   {
@@ -42,6 +43,7 @@ class Circle //<>// //<>// //<>//
     this.collideWall();
     this.updateColor();
     this.isHovering();
+    this.display();
   }
 
   public int getMass()
@@ -188,12 +190,13 @@ class Circle //<>// //<>// //<>//
 
   public void collideWall()
   {
+       
   for(Obstacle obst:obstacleList)
   {
-   
+    
     if (doCollideObst(this, obst))
     {
-      collideWithWall(this);
+       collideWithWall(this);
     }
   }
 
@@ -221,9 +224,11 @@ class Circle //<>// //<>// //<>//
 
 public void display()
 {
+ 
   ellipseMode(RADIUS);
   fill(circleColor);
   strokeWeight(stroke);
+  image(cuteGirlList.get(cuteGirl),position.x,position.y);
   ellipse(position.x, position.y, radius, radius);
 }
 }
