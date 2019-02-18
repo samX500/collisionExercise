@@ -190,17 +190,12 @@ class Circle //<>//
 
   public void collideWall()
   {
-       
-  for(Obstacle obst:obstacleList)
-  {
-    
-    if (doCollideObst(this, obst))
+
+    if (doCollideWall(this,width,height))
     {
        collideWithWall(this);
     }
-  }
 
-  
   }
 
   public void isHovering()
@@ -225,10 +220,15 @@ class Circle //<>//
 public void display()
 {
  
+  imageMode(CENTER);
   ellipseMode(RADIUS);
   fill(circleColor);
   strokeWeight(stroke);
-  image(cuteGirlList.get(cuteGirl),position.x,position.y);
   ellipse(position.x, position.y, radius, radius);
+   if(isLoli)
+   {
+    image(cuteGirlList.get(cuteGirl),position.x,position.y);
+   }
+ 
 }
 }

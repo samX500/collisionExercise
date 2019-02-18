@@ -2,10 +2,10 @@ PImage cuteGirl1,cuteGirl2,cuteGirl3,cuteGirl4;
 ArrayList<PImage> cuteGirlList = new ArrayList<PImage>();
 
 ArrayList<Circle> circleList = new ArrayList<Circle>();
-static ArrayList<Obstacle> obstacleList = new ArrayList<Obstacle>();
 ArrayList<PVector> oldSpeed = new ArrayList<PVector>();
 int wallSize = 50;
 
+boolean isLoli = false;
 Circle newCircle;
 boolean stop = false;
 static final int xSize = 1000;
@@ -20,14 +20,6 @@ void setup()
   cuteGirlList.add(loadImage("miho.jpg"));
 
   size(1200, 1000);
-  //Left wall
-  obstacleList.add(new Obstacle(menuWitdh-wallSize+10, height/2,wallSize, height));
-  //Right wall
-  obstacleList.add(new Obstacle(width +wallSize-10,height/2 , wallSize, height));
-  //Roof
-  obstacleList.add(new Obstacle(width/2, -wallSize+10, width, wallSize));
-  //Floor
-  obstacleList.add(new Obstacle(width/2, height+wallSize-10, width, wallSize));
 }
 
 void draw()  
@@ -40,11 +32,6 @@ void draw()
     {
       circleList.get(i).collide(circleList.get(i+j));
     }
-  }
-
-  for(Obstacle obst: obstacleList)
-  {
-    obst.display();
   }
   displayMenu();
 
@@ -124,5 +111,10 @@ void keyPressed()
       oldSpeed.clear();
       stop = false;
     }
+  }
+  
+  if(key == 'l')
+  {
+    isLoli = isLoli?false:true;
   }
 }

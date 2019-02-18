@@ -1,11 +1,11 @@
-static int menuWitdh = 200;
+static int menuWidth = 200;
 boolean touchCircle = false;
 Circle currentCircle;
 public void displayMenu()
 {
   fill(color(255));
   strokeWeight(5);
-  rect(0, 0, menuWitdh, width);
+  rect(0, 0, menuWidth, width);
   strokeWeight(1);
 
   for (Circle circle : circleList)
@@ -40,6 +40,15 @@ public void normalMenu()
     text("Paused", 25, 130);
   } else {
     text("Unpaused", 25, 130);
+  }
+  
+  if(isLoli)
+  {
+    text("Loli currently \ndisplayed\npress l to\ndisable",1,230);
+  }
+  else
+  {
+   text("Loli currently \nnot displayed\npress l to\nenable",1,230);
   }
 }
 

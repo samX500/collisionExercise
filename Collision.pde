@@ -11,23 +11,31 @@ public static boolean doCollide(Circle currentCircle, Circle otherCircle)
   return isCollision;
 }
 
-public static boolean doCollideObst(Circle currentCircle,Obstacle currentObst)
+public static boolean doCollideWall(Circle currentCircle, int width, int height)
 {
   boolean isCollision = false;
-  PVector distance = PVector.sub(currentObst.position,currentCircle.position);
-
-    System.out.println(abs(distance.x) > currentCircle.getRadius()+currentObst.getWidth()||abs(distance.y) > currentCircle.getRadius()+currentObst.getHeight());
-   if(abs(distance.x) < currentCircle.getRadius()+currentObst.getWidth()||abs(distance.y) < currentCircle.getRadius()+currentObst.getHeight())
-   {
-      if(distance.x <= 0 && (currentCircle.getXPosition() > currentObst.getXPosition()))
-     {
-       currentCircle.setXPosition(currentObst.getXPosition()-currentObst.getWidth());
-       isCollision = true;
-     }
-     isCollision = true;
-   }
   
-  System.out.println(isCollision);
+  if(currentCircle.getXPosition()- currentCircle.getRadius() < menuWidth)
+  {
+    currentCircle.setXPosition(menuWidth+currentCircle.getRadius());
+    isCollision = true;
+  }
+  else if(currentCircle.getXPosition() + currentCircle.getRadius() > width)
+  {
+    currentCircle.setXPosition(width-currentCircle.getRadius());
+    isCollision = true;
+  }
+  else if( currentCircle.getYPosition() - currentCircle.getRadius() < 0)
+  {
+    currentCircle.setYPosition(currentCircle.getRadius());
+    isCollision = true;
+  }
+  else if( currentCircle.getYPosition() + currentCircle.getRadius() > height)
+  {
+    currentCircle.setYPosition(height - currentCircle.getRadius());
+    isCollision = true;
+  }
+  
   return isCollision;
 }
 
