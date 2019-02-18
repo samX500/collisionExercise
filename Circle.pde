@@ -191,10 +191,9 @@ class Circle //<>//
   public void collideWall()
   {
 
-    if (doCollideWall(this,width,height))
-    {
-       collideWithWall(this);
-    }
+    
+       collideWithWall(this,doCollideWall(this,width,height));
+    
 
   }
 
@@ -225,6 +224,7 @@ public void display()
   fill(circleColor);
   strokeWeight(stroke);
   ellipse(position.x, position.y, radius, radius);
+  
    if(isLoli)
    {
     image(cuteGirlList.get(cuteGirl),position.x,position.y);

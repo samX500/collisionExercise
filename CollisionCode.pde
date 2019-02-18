@@ -26,11 +26,14 @@ void draw()
 {
   background(0, 255, 255);
 
-  for (int i = 0; i < circleList.size()-1; i++)
+  if(!stop)
   {
-    for (int j = 1; i+j < circleList.size(); j++)
+    for (int i = 0; i < circleList.size()-1; i++)
     {
-      circleList.get(i).collide(circleList.get(i+j));
+      for (int j = 1; i+j < circleList.size(); j++)
+      {
+        circleList.get(i).collide(circleList.get(i+j));
+      }
     }
   }
   displayMenu();
@@ -116,5 +119,22 @@ void keyPressed()
   if(key == 'l')
   {
     isLoli = isLoli?false:true;
+  }
+  if(key == 'c')
+  {
+    circleList.clear();
+  }
+  if(key == 'z' || key == 'x')
+  {
+    for(int i = 0; i <= 10;i++)
+    {
+      newCircle = new Circle(mouseX, mouseY);
+      circleList.add(new Circle(mouseX, mouseY));
+
+      if (stop)
+      {
+        oldSpeed.add(new PVector(0, 0));
+      }
+    }
   }
 }

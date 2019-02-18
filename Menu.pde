@@ -31,10 +31,10 @@ public void displayMenu()
 
 public void normalMenu()
 {
-  fill(color(0, 255, 100));
+  fill(color(255, 0, 100));
   textSize(30);
   text("Press space\n to pause", 10, 30);
-   fill(color(255, 0, 100));
+   
   if (stop)
   {
     text("Paused", 25, 130);
@@ -50,6 +50,8 @@ public void normalMenu()
   {
    text("Loli currently \nnot displayed\npress l to\nenable",1,230);
   }
+  
+  text("c to clear",10,430);
 }
 
 public void circleMenu(Circle currentCircle)

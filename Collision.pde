@@ -11,29 +11,29 @@ public static boolean doCollide(Circle currentCircle, Circle otherCircle)
   return isCollision;
 }
 
-public static boolean doCollideWall(Circle currentCircle, int width, int height)
+public static int doCollideWall(Circle currentCircle, int width, int height)
 {
-  boolean isCollision = false;
+  int isCollision = 0;
   
   if(currentCircle.getXPosition()- currentCircle.getRadius() < menuWidth)
   {
     currentCircle.setXPosition(menuWidth+currentCircle.getRadius());
-    isCollision = true;
+    isCollision = 1;
   }
   else if(currentCircle.getXPosition() + currentCircle.getRadius() > width)
   {
     currentCircle.setXPosition(width-currentCircle.getRadius());
-    isCollision = true;
+    isCollision = 1;
   }
-  else if( currentCircle.getYPosition() - currentCircle.getRadius() < 0)
+  else if(currentCircle.getYPosition() - currentCircle.getRadius() < 0)
   {
     currentCircle.setYPosition(currentCircle.getRadius());
-    isCollision = true;
+    isCollision = -1;
   }
-  else if( currentCircle.getYPosition() + currentCircle.getRadius() > height)
+  else if(currentCircle.getYPosition() + currentCircle.getRadius() > height)
   {
     currentCircle.setYPosition(height - currentCircle.getRadius());
-    isCollision = true;
+    isCollision = -1;
   }
   
   return isCollision;
@@ -95,7 +95,14 @@ public static void collideWith(Circle currentCircle, Circle otherCircle)
   }
 }
 
-public static void collideWithWall(Circle currentCircle)
+public static void collideWithWall(Circle currentCircle,int collide)
 {
-  currentCircle.setSpeed(-currentCircle.speed.x, -currentCircle.speed.y);
+  if(collide == 1)
+  {
+     currentCircle.setSpeed(-currentCircle.speed.x, currentCircle.speed.y);
+  }
+  else if(collide == -1)
+  {
+  currentCircle.setSpeed(currentCircle.speed.x, -currentCircle.speed.y);
+  }
 }
