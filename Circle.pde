@@ -15,14 +15,15 @@ class Circle //<>//
   private PVector speed; 
   private int stroke;
   private color circleColor;
-  private int cuteGirl = (int)random(0,cuteGirlList.size()); 
+  private int cuteGirl = (int)random(0, cuteGirlList.size()); 
 
   public Circle(int xPosition, int yPosition)
   {
     mass = DEFAULT_MASS;
     radius = DEFAULT_RADIUS;
     energy = DEFAULT_ENEGERY;
-    circleColor = DEFAULT_COLOR;;
+    circleColor = DEFAULT_COLOR;
+    ;
     position = new PVector(xPosition, yPosition);
     speed = new PVector(0, 0);
   }
@@ -185,16 +186,14 @@ class Circle //<>//
 
   public void collide(Circle otherCircle)
   {
-      collideWith(this, otherCircle);
+    collideWith(this, otherCircle);
   }
 
   public void collideWall()
   {
 
-    
-       collideWithWall(this,doCollideWall(this,width,height));
-    
 
+    collideWithWall(this, doCollideWall(this, width, height));
   }
 
   public void isHovering()
@@ -209,26 +208,26 @@ class Circle //<>//
   }
 
   public boolean mouseTouch()
-{
+  {
     float distance = dist(mouseX, mouseY, position.x, position.y);
 
 
-  return distance <= radius;
-}
+    return distance <= radius;
+  }
 
-public void display()
-{
- 
-  imageMode(CENTER);
-  ellipseMode(RADIUS);
-  fill(circleColor);
-  strokeWeight(stroke);
-  ellipse(position.x, position.y, radius, radius);
-  
-   if(isLoli)
-   {
-    image(cuteGirlList.get(cuteGirl),position.x,position.y);
-   }
- 
-}
+  public void display()
+  {
+
+    if (isLoli)
+    {
+      imageMode(CENTER);
+      image(cuteGirlList.get(cuteGirl), position.x, position.y);
+    } else
+    {
+      ellipseMode(RADIUS);
+      fill(circleColor);
+      strokeWeight(stroke);
+      ellipse(position.x, position.y, radius, radius);
+    }
+  }
 }
