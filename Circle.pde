@@ -23,7 +23,6 @@ class Circle //<>//
     radius = DEFAULT_RADIUS;
     energy = DEFAULT_ENEGERY;
     circleColor = DEFAULT_COLOR;
-    ;
     position = new PVector(xPosition, yPosition);
     speed = new PVector(0, 0);
   }

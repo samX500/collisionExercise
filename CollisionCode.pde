@@ -1,3 +1,26 @@
+import java.io.FileFilter;
+import java.io.FilenameFilter;
+
+final FileFilter FOLDER_FILTER = new FileFilter() {
+ 
+  @ Override boolean accept(final File path) {
+    println(path);
+    return path.isDirectory();
+  }
+};
+ 
+final FilenameFilter PIC_FILTER = new FilenameFilter() {
+  final String[] exts = {
+    ".png", ".jpg", ".jpeg", ".gif"
+  };
+ 
+  @ Override boolean accept(final File path, String name) {
+    name = name.toLowerCase();
+    for (final String ext : exts)  if (name.endsWith(ext))  return true;
+    return false;
+  }
+};
+
 PImage cuteGirl1,cuteGirl2,cuteGirl3,cuteGirl4;
 ArrayList<PImage> cuteGirlList = new ArrayList<PImage>();
 
@@ -12,12 +35,26 @@ static final int xSize = 1000;
 static final int ySize = 1000;
 
 
+PImage pic;
 void setup()
 {
-  cuteGirlList.add(loadImage("azusa.jpg"));
-  cuteGirlList.add(loadImage("rikka.jpg"));
-  cuteGirlList.add(loadImage("nano.jpg"));
-  cuteGirlList.add(loadImage("miho.jpg"));
+File dataFolder = dataFile("");
+ 
+  File[] imgDirs = dataFolder.listFiles(FOLDER_FILTER);
+  imgDirs = (File[]) append(imgDirs, dataFolder);
+ 
+  println(imgDirs.length, "folders found:");
+  printArray(imgDirs);
+
+  //String[] filenames = new String[picture.length];
+  
+  //for (int i = 0; i < picture.length; filenames[i] = picture[i++].getPath());
+
+  //for(int i = 0; i < picture.length;i++)
+  //{
+  //  pic = loadImage(filenames[i],"jpg");
+  //  cuteGirlList.add(pic);
+  //}
 
   size(1200, 1000);
 }
