@@ -1,26 +1,3 @@
-import java.io.FileFilter;
-import java.io.FilenameFilter;
-
-final FileFilter FOLDER_FILTER = new FileFilter() {
- 
-  @ Override boolean accept(final File path) {
-    println(path);
-    return path.isDirectory();
-  }
-};
- 
-final FilenameFilter PIC_FILTER = new FilenameFilter() {
-  final String[] exts = {
-    ".png", ".jpg", ".jpeg", ".gif"
-  };
- 
-  @ Override boolean accept(final File path, String name) {
-    name = name.toLowerCase();
-    for (final String ext : exts)  if (name.endsWith(ext))  return true;
-    return false;
-  }
-};
-
 PImage cuteGirl1,cuteGirl2,cuteGirl3,cuteGirl4;
 ArrayList<PImage> cuteGirlList = new ArrayList<PImage>();
 
@@ -34,28 +11,21 @@ boolean stop = false;
 static final int xSize = 1000;
 static final int ySize = 1000;
 
+int nbrBall = 10;
 
-PImage pic;
+File dir; 
+File [] files;
 void setup()
 {
-File dataFolder = dataFile("");
- 
-  File[] imgDirs = dataFolder.listFiles(FOLDER_FILTER);
-  imgDirs = (File[]) append(imgDirs, dataFolder);
- 
-  println(imgDirs.length, "folders found:");
-  printArray(imgDirs);
+  dir = new File(sketchPath("picture"));
+  print(dir);
+  files = dir.listFiles();
 
-  //String[] filenames = new String[picture.length];
-  
-  //for (int i = 0; i < picture.length; filenames[i] = picture[i++].getPath());
+  for(int i =0; i < files.length;i++)
+  {  
 
-  //for(int i = 0; i < picture.length;i++)
-  //{
-  //  pic = loadImage(filenames[i],"jpg");
-  //  cuteGirlList.add(pic);
-  //}
-
+    cuteGirlList.add(loadImage(files[i].getAbsolutePath()));
+  }    
   size(1200, 1000);
 }
 
@@ -163,7 +133,7 @@ void keyPressed()
   }
   if(key == 'z' || key == 'x')
   {
-    for(int i = 0; i <= 10;i++)
+    for(int i = 0; i <= nbrBall;i++)
     {
       newCircle = new Circle(mouseX, mouseY);
       circleList.add(new Circle(mouseX, mouseY));
